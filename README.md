@@ -29,8 +29,8 @@
 ### Visualization Approaches
 
 approach 1: \
-![Image Alt Text](https://github.com/vishal-s-patil/Log-Ingestor-and-Query-Interface/blob/main/process1.png?raw=true) 
+![Image Alt Text](https://github.com/vishal-s-patil/Log-Ingestor-and-Query-Interface/blob/main/process1.png?raw=true) \ 
 approach 2: \
-![Image Alt Text](https://github.com/vishal-s-patil/Log-Ingestor-and-Query-Interface/blob/main/process2.png?raw=true) 
+![Image Alt Text](https://github.com/vishal-s-patil/Log-Ingestor-and-Query-Interface/blob/main/process2.png?raw=true) \
 approach 3(implemented): \
 ![Image Alt Text](https://github.com/vishal-s-patil/Log-Ingestor-and-Query-Interface/blob/main/process3.png?raw=true) 
