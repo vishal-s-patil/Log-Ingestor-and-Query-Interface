@@ -20,7 +20,7 @@ load_dotenv()
 
 access_key = os.getenv('AWS_ACCESS_KEY')
 secret_access_key = os.getenv('AWS_SECRET_KEY')
-elasticsearch_url = "http://127.0.0.1:9200/logs/_doc"
+elasticsearch_url = "http://elasticsearch:9200/logs/_doc"
 
 db_params = {
     'dbname': 'logingestor',
@@ -221,9 +221,9 @@ def search_logs(request):
                 }
             }
 
-        es = Elasticsearch(['http://localhost:9200'])
+        es = Elasticsearch(['http://elasticsearch:9200'])
         result = es.search(index='logs', body=search_query)
-        print('result', result)
+        # print('result', result)
         hits = result['hits']['hits']
         logs = []
         for hit in hits:
