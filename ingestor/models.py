@@ -14,3 +14,21 @@ class LogEntry(models.Model):
 
     def __str__(self):
         return f"Level: {self.level} \n Message: {self.message} \n Timestamp: {self.timestamp} \n TraceID: {self.traceId} \n Metadata: {self.metadata}"
+
+
+'''
+
+CREATE TABLE IF NOT EXISTS public.logs
+(
+    level character varying(255) COLLATE pg_catalog."default",
+    message character varying(255) COLLATE pg_catalog."default",
+    resourceid character varying(255) COLLATE pg_catalog."default",
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    traceid character varying(255) COLLATE pg_catalog."default",
+    spanid character varying(255) COLLATE pg_catalog."default",
+    commit character varying(255) COLLATE pg_catalog."default",
+    parentresourceid character varying(255) COLLATE pg_catalog."default",
+    metadata_parentresourceid character varying(255) COLLATE pg_catalog."default"
+)
+
+'''

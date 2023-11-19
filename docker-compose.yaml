@@ -11,6 +11,7 @@ services:
     environment:
       - xpack.security.enabled=false
       - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms50m -Xmx512m
     ulimits:
       memlock:
         soft: -1
@@ -27,6 +28,30 @@ services:
     restart: always
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      - POSTGRES_PASSWORD=patil9922
+    ports:
+      - 5432:5432
+    restart: always
+  app:
+    depends_on:
+      - elasticsearch
+      - kibana
+      - postgres
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=logIngestor.settings
+      - AWS_ACCESS_KEY=AKIARRH5S3ASID6QZMGY
+      - AWS_SECRET_KEY=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
+      - SQS_URL=https://sqs.eu-north-1.amazonaws.com/105758513188/log-ingestion-queue
+      - DJANGO_DEBUG=True
 volumes:
   elasticsearch-data:
     driver: local

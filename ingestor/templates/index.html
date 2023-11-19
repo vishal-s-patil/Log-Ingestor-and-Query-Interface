@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Search</title>
+</head>
+<body>
+
+    <h1>Log Search</h1>
+
+    <form method="post" action="{% url 'ingestor:search_logs' %}">
+        <!-- Level -->
+        {% csrf_token %}
+        <label for="id_level">Level:</label>
+        <input type="text" name="level" id="id_level">
+
+        <!-- Message -->
+        <label for="id_message">Message:</label>
+        <input type="text" name="message" id="id_message">
+
+        <!-- Resource ID -->
+        <label for="id_resourceId">Resource ID:</label>
+        <input type="text" name="resourceId" id="id_resourceId">
+
+        <!-- Timestamp (Start) -->
+        <label for="id_timestamp_start">Timestamp (Start):</label>
+        <input type="datetime-local" name="timestamp_start" id="id_timestamp_start">
+
+        <!-- Timestamp (End) -->
+        <label for="id_timestamp_end">Timestamp (End):</label>
+        <input type="datetime-local" name="timestamp_end" id="id_timestamp_end">
+
+        <!-- Trace ID -->
+        <label for="id_traceId">Trace ID:</label>
+        <input type="text" name="traceId" id="id_traceId">
+
+        <!-- Span ID -->
+        <label for="id_spanId">Span ID:</label>
+        <input type="text" name="spanId" id="id_spanId">
+
+        <!-- Commit -->
+        <label for="id_commit">Commit:</label>
+        <input type="text" name="commit" id="id_commit">
+
+        <!-- Parent Resource ID -->
+        <label for="id_metadata_parentResourceId">Parent Resource ID:</label>
+        <input type="text" name="metadata_parentResourceId" id="id_metadata_parentResourceId">
+
+        <br>
+
+        <input type="submit" value="Search">
+    </form>
+
+    {% if logs %}
+    <h2>Search Results:</h2>
+    <ul>
+        {% for log in logs %}
+            <li>
+                <strong>Level:</strong> {{ log.level }}<br>
+                <strong>Message:</strong> {{ log.message }}<br>
+                <strong>Resource ID:</strong> {{ log.resourceId }}<br>
+                <strong>Timestamp:</strong> {{ log.timestamp }}<br>
+                <strong>Trace ID:</strong> {{ log.traceId }}<br>
+                <strong>Span ID:</strong> {{ log.spanId }}<br>
+                <strong>Commit:</strong> {{ log.commit }}<br>
+                <strong>Parent Resource ID:</strong> {{ log.metadata.parentResourceId }}
+            </li>
+            <br> <!-- Add a line break between log entries for better readability -->
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No search results found.</p>
+{% endif %}
+
+</body>
+</html>
